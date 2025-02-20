@@ -13,7 +13,7 @@ const Signup=()=>{
             password: password
         };
         try{
-            const response = await axios.post("http://localhost:3000/api/auth/signin", details);
+            const response = await axios.post("http://localhost:3000/api/auth/signup", details);
             alert(response.data.message);
             navigate('/')
         }
@@ -29,7 +29,7 @@ const Signup=()=>{
                 <h2>signinform</h2>
                 <input type="email" name="email" placeholder="enter your emailID"/><br></br>
                 <input type="password" name="password" placeholder="enter your password"/><br></br>
-                <button type="submit">signIn</button>
+                <button type="submit">signUn</button>
             </form>
         </div>
   )

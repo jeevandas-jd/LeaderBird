@@ -23,6 +23,8 @@ const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 const authRouter = require('./routes/authRouter');
 app.use('/api/auth',authRouter);
+const TournamentRouter = require("./routes/bracketRouter");
+app.use('/api/create-game',TournamentRouter);
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)

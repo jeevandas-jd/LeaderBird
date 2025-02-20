@@ -8,8 +8,11 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.9",
+    "brackets-viewer": "^1.6.2",
+    "lucide-react": "^0.475.0",
     "nodemon": "^3.1.9",
     "react": "^19.0.0",
+    "react-brackets": "^0.4.7",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
@@ -22,10 +25,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

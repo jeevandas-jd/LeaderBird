@@ -36,3 +36,173 @@
     transform: rotate(360deg);
   }
 }
+body {
+  margin-top: 10px;
+  margin-inline: 30px;
+  font-family: Poppins, sans-serif;
+  background-color: #f0f0f0;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 30px;
+  font-family: Itim;
+}
+
+
+.signup-btn {
+  background-color: #4a54da;
+  color: white;
+  border: none;
+  letter-spacing: 0.1px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.signup-btn:hover {
+  background-color: #3b42ae;
+}
+
+.signup-btn:active {
+  background-color: #4a54da;
+}
+.signup-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5); 
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding-inline: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display:inline-flex;
+  
+}
+
+h1 {
+  color: #6a1313;
+
+
+}
+
+
+
+
+
+.login-options {
+  margin: 20px 0;
+}
+
+.google-login {
+  background-color: #4a54da;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  letter-spacing: 0.1px;
+  font-size: 13px;
+  transition: background-color 0.3s ease;
+}
+
+.google-login:hover {
+  background-color: #3b42ae;
+}
+
+.google-login:active {
+  background-color: #4a54da;
+}
+
+.google-login:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5); 
+}
+
+.google-login::before {
+  content: ' ';
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  width: 17px;
+  height: 17px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg') no-repeat;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: flex;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding-block: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.options label{
+  display: flex; 
+}
+
+.login-btn {
+  background-color: #4a54da;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0.1px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+.login-btn:hover {
+  background-color: #3b42ae;
+}
+
+.login-btn:active {
+  background-color: #4a54da;
+}
+
+.login-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5); 
+}
+
+.forgot-password {
+  text-align: right;
+  margin-left: auto;
+}
+a {
+  color: #4a54da;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

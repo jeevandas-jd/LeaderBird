@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Signup from './components/Auth/Sginup';
 import Signin from './components/Auth/Signin';
+import TournamentCreator from './components/TournamentCreator';
+import Component from './components/testComponets/example';
+//import Bracket from './components/bracket/brackets-viwer';
 
 
 function App() {
@@ -14,6 +17,9 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/signin' element={<Signin/>}/>
+        <Route path='/create-game' element={<TournamentCreator/>}/>
+        <Route path='/example' element={<Component/>}/>
+
       </Routes>
     </Router>
   );
