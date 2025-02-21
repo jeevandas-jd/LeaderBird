@@ -1,8 +1,10 @@
 function generateBracket(teams) {
+
+    console.log("generateBracket Called")
     let rounds = [];
     let currentRound = teams.map((team, index) => ({
         team: team,
-        seed: index + 1
+        seed: index + 1 
     }));
 
     while (currentRound.length > 1) {
@@ -26,6 +28,7 @@ function generateBracket(teams) {
 
     // Add the final round
     rounds.push(currentRound);
+    console.log("Rounds => ",rounds);
 
     return rounds;
 }
@@ -34,6 +37,14 @@ exports.createBracket = (req, res) => {
     console.log("createBracket Called")
     const { teams } = req.body;
 
+    const noTeams=teams.length;
+
+    if(noTeams > 0 && Math.log2(noTeams) % 1 != 0){
+        let nextPowerOfTwo = Math.pow(2, Math.ceil(Math.log2(noTeams)));
+        while (teams.length < nextPowerOfTwo) {
+            teams.push("Dummy Team");
+        }   
+    }
     console.log(`teams listed = > ${teams}`)
 
     // Validate teams
@@ -52,4 +63,6 @@ exports.createBracket = (req, res) => {
         message: "Knockout tournament created successfully!",
         bracket
     });
-    console.log("Bracket Created\n",bracket)};
+    console.log("Bracket Created\n",bracket)
+};
+
