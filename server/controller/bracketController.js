@@ -1,51 +1,92 @@
-function generateBracket(teams) {
+const { Bracket, Round, Match } = require("../models/tournamentModel/bracketModel");
 
-    console.log("generateBracket Called")
-    let rounds = [];
-    let currentRound = teams.map((team, index) => ({
-        team: team,
-        seed: index + 1 
-    }));
+async function generateBracket(teams) {
+    console.log("Generating Bracket...");
 
-    while (currentRound.length > 1) {
-        rounds.push([...currentRound]); // Store current round
-        const nextRound = [];
-
-        // Pair teams for the next round
-        for (let i = 0; i < currentRound.length; i += 2) {
-            nextRound.push({
-                match: `${currentRound[i].team} vs ${currentRound[i + 1].team}`,
-                teams: [currentRound[i], currentRound[i + 1]]
-            });
-        }
-
-        // Prepare the next round's teams (winners placeholders)
-        currentRound = nextRound.map((match, index) => ({
-            team: `Winner of Match ${index + 1}`,
-            seed: index + 1
-        }));
+    // Ensure power of 2 teams
+    const nextPowerOfTwo = Math.pow(2, Math.ceil(Math.log2(teams.length)));
+    while (teams.length < nextPowerOfTwo) {
+        teams.push(`Dummy Team ${teams.length + 1}`);
     }
 
-    // Add the final round
-    rounds.push(currentRound);
-    console.log("Rounds => ",rounds);
+    const numberOfRounds = Math.log2(teams.length);
+    const bracket = new Bracket({ teams, noRounds: numberOfRounds, rounds: [] });
+    await bracket.save();
 
-    return rounds;
+    const rounds = [];
+    for (let i = 0; i < numberOfRounds; i++) {
+        const round = await Round.create({ roundNo: i + 1, matches: [], bracketId: bracket._id });
+        rounds.push(round._id);
+    }
+
+    bracket.rounds = rounds;
+    await bracket.save();
+
+    await scheduleMatches(1, teams, bracket._id);
+    console.log("Bracket Generation Complete!");
+    return bracket;
 }
 
-exports.createBracket = (req, res) => {
+async function scheduleMatches(roundNo, teams, bracketId) {
+    const numberOfRounds = Math.log2(teams.length);
+    if (roundNo > numberOfRounds) return;
+
+    console.log(`Scheduling matches for Round ${roundNo}`);
+
+    let matches = [];
+    for (let i = 0; i < teams.length; i += 2) {
+        const match = await Match.create({
+            team1: teams[i],
+            team2: teams[i + 1],
+            roundNo: roundNo,
+        });
+        matches.push(match._id);
+    }
+
+    await Round.findOneAndUpdate(
+        { roundNo: roundNo, bracketId },
+        { $set: { matches } },
+        { new: true }
+    );
+
+    console.log(`Matches scheduled for Round ${roundNo}`);
+}
+
+async function updateResult(roundNo, matchNo, score1, score2, bracketId) {
+    const round = await Round.findOne({ roundNo, bracketId }).populate("matches");
+    if (!round) return console.log("Round not found");
+
+    const match = round.matches[matchNo];
+    if (!match) return console.log("Match not found");
+
+    match.result = [score1, score2];
+    await match.save();
+
+    const winner = score1 > score2 ? match.team1 : match.team2;
+    round.winners = round.winners || [];
+    round.winners.push(winner);
+    await round.save();
+
+    console.log(`Result updated: ${match.team1} (${score1}) vs ${match.team2} (${score2})`);
+
+    if (roundNo < Math.log2(round.teams.length)) {
+        await scheduleMatches(roundNo + 1, round.winners, bracketId);
+    }
+}
+
+exports.createBracket = async (req, res) => {
     console.log("createBracket Called")
     const { teams } = req.body;
 
-    const noTeams=teams.length;
+    const noTeams = teams.length;
 
-    if(noTeams > 0 && Math.log2(noTeams) % 1 != 0){
+    if (noTeams > 0 && Math.log2(noTeams) % 1 !== 0) {
         let nextPowerOfTwo = Math.pow(2, Math.ceil(Math.log2(noTeams)));
         while (teams.length < nextPowerOfTwo) {
             teams.push("Dummy Team");
-        }   
+        }
     }
-    console.log(`teams listed = > ${teams}`)
+    console.log(`Teams listed => ${teams}`);
 
     // Validate teams
     if (!Array.isArray(teams) || teams.length < 2 || (teams.length & (teams.length - 1)) !== 0) {
@@ -55,14 +96,24 @@ exports.createBracket = (req, res) => {
         });
     }
 
-    // Generate bracket
-    const bracket = generateBracket(teams);
+    // Generate bracket (fetch actual rounds instead of IDs)
+    const bracket = await generateBracket(teams);
 
+    // Fetch full details of each round from DB
+
+    
+    const roundDetails = await Round.find({ _id: { $in: bracket.rounds } });
+    const bracketDetails=
     res.json({
         success: true,
         message: "Knockout tournament created successfully!",
-        bracket
+        bracket: {
+            bracket,  
+            rounds: roundDetails // Replace round IDs with actual round details
+        }
     });
-    console.log("Bracket Created\n",bracket)
+
+    console.log("Bracket Created\n", bracket);
 };
+
 

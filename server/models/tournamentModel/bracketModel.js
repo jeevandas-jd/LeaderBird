@@ -68,6 +68,7 @@ const RoundSchema = new mongoose.Schema({
 // Define Mongoose models
 const Bracket = mongoose.model("Bracket", BracketSchema);
 const Round = mongoose.model("Round", RoundSchema);
+const Match = mongoose.model("Match", MatchSchema);
 
 // Export both models
-module.exports = { Bracket, Round };
+module.exports = { Bracket, Round, Match };

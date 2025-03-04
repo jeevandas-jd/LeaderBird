@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./TournamentCreator.css"; // Import CSS file for styling
-import { Bracket, RoundProps } from 'react-brackets';
+//import { Bracket, RoundProps } from 'react-brackets';
+import Bracket from "../components/bracket/bracketII";
 const TournamentCreator = () => {
   const [teams, setTeams] = useState([]);
   const [teamName, setTeamName] = useState("");
@@ -34,22 +35,17 @@ const TournamentCreator = () => {
     setLoading(true);
 
     try {
-      const shuffledTeams = shuffleTeams(teams); // Randomize pairings
-      console.log("hello before api call");
-      const response = await axios.post("http://localhost:3000/api/create-game/bracket", {
-        teams: shuffledTeams,
-      });
+        const shuffledTeams = shuffleTeams(teams);
+        const response = await axios.post("http://localhost:3000/api/create-game/bracket", { teams: shuffledTeams });
 
-      setBracket(response.data.bracket);
-      
-      console.log(response.data.bracket);
+        console.log(response.data.bracket);  // Debugging
+        setBracket(response.data.bracket);
     } catch (err) {
-      setError(err.response?.data?.message || "Error creating tournament.");
+        setError(err.response?.data?.message || "Error creating tournament.");
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
-
+};
   return (
     <div className="tournament-container">
       <h2>Knockout Tournament Creator</h2>
@@ -90,19 +86,22 @@ const TournamentCreator = () => {
 
       {/* Display Bracket if Generated */}
       {bracket && (
-        <div className="bracket">
-          <h3>Tournament Bracket</h3>
-          {bracket.map((round, roundIndex) => (
-            <div key={roundIndex} className="round">
-              <h4>{roundIndex === bracket.length - 1 ? "Final" : `Round ${roundIndex + 1}`}</h4>
-              {round.map((match, matchIndex) => (
-                <p key={matchIndex}>{match.match || match.team}</p>
-              ))}
-              <h1>hello</h1>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="bracket-container">
+        <h3>Tournament Bracket</h3>
+        <Bracket
+          rounds={bracket.rounds.map((round, roundIndex) => ({
+            title: roundIndex === bracket.rounds.length - 1 ? "Final" : `Round ${roundIndex + 1}`,
+            seeds: round.matches.map((match) => ({
+              id: match._id,
+              teams: [
+                { name: match.team1 },
+                { name: match.team2 }
+              ]
+            }))
+          }))}
+        />
+      </div>
+    )}
     </div>
   );
 };
