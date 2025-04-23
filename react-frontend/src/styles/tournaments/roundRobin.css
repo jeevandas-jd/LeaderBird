@@ -1,0 +1,179 @@
+/* Main container */
+.round-robin-tournament {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header styles */
+  .tournament-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .tournament-title {
+    font-size: 2.2rem;
+    color: #333;
+  }
+  
+  .tournament-description {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  /* Groups container */
+  .groups-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 30px;
+  }
+  
+  /* Group stage */
+  .group-stage {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .group-name {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .group-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Standings table */
+  .standings-table {
+    overflow-x: auto;
+  }
+  
+  .standings-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .standings-table th, 
+  .standings-table td {
+    padding: 8px 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  .standings-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+  }
+  
+  .standings-table .team-name {
+    text-align: left;
+    font-weight: 500;
+  }
+  
+  .standings-table .points {
+    font-weight: bold;
+    color: #2c7be5;
+  }
+  
+  /* Match list */
+  .match-list {
+    margin-top: 20px;
+  }
+  
+  .matches-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Match item */
+  .match-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border-radius: 6px;
+  }
+  
+  .match-item.played {
+    background: #f0f8ff;
+  }
+  
+  .teams {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+  
+  .team {
+    font-weight: 500;
+  }
+  
+  .home-team {
+    text-align: right;
+  }
+  
+  .away-team {
+    text-align: left;
+  }
+  
+  .vs {
+    color: #777;
+  }
+  
+  .result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+  }
+  
+  .match-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .match-actions input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .edit-btn, .enter-result-btn {
+    background-color: #2c7be5;
+    color: white;
+  }
+  
+  .save-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cancel-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }

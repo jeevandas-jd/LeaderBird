@@ -27,6 +27,8 @@ const TournamentRouter = require("./routes/bracketRouter");
 app.use('/api/create-game',TournamentRouter);
 const tournamentRoutes = require('./routes/tournaments');
 app.use('/api/tournaments', tournamentRoutes);
+const roundRobinRouter = require('./routes/roundRobinRoutes');
+app.use('/api/round-robin', roundRobinRouter);
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))

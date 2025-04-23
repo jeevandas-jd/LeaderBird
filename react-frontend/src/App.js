@@ -11,6 +11,8 @@ import TournamentList from './components/TournamentList';
 import TournamentDetail from './components/TournamentDetail';
 import CreateTournament from './components/CreateTournament';
 import ExampleBracket from './components/bracket/bracketII';
+import RoundRobinTournamentPage from './pages/tournaments/RoundRobinTournamentPage';
+import CreateRoundRobinPage from './pages/tournaments/CreateRoundRobinPage';
 //import Bracket from './components/bracket/brackets-viwer';
 
 
@@ -27,6 +29,16 @@ function App() {
         <Route path="/create-game" element={<TournamentList />} />
             <Route path="/tournaments/new" element={<CreateTournament />} />
             <Route path="/tournaments/:id" element={<TournamentDetail />} />
+
+            <Route 
+  path="/round-robin/:id" 
+  element={<RoundRobinTournamentPage />} 
+  
+/>
+<Route 
+  path="/create-round-robin" 
+  element={<CreateRoundRobinPage />} 
+/>
 
       </Routes>
     </Router>

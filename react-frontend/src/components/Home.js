@@ -30,6 +30,14 @@ const Home = () => {
               <GamepadIcon className="h-5 w-5" />
               Create Tournament
             </button>
+            
+            <button
+              onClick={() => window.location.href = "/create-round-robin"}
+              className="group relative flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-200 text-lg font-medium w-full sm:w-auto"
+            >
+              <GamepadIcon className="h-5 w-5" />
+              Create Table
+            </button>
 
             <button
               onClick={() => window.location.href = "/signin"}
