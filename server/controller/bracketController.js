@@ -56,7 +56,7 @@ async function updateResult(roundNo, matchNo, score1, score2, bracketId) {
     const round = await Round.findOne({ roundNo, bracketId }).populate("matches");
     if (!round) return console.log("Round not found");
 
-    const match = round.matches[matchNo];
+    const match = round.matches[matchId];
     if (!match) return console.log("Match not found");
 
     match.result = [score1, score2];
@@ -102,6 +102,7 @@ exports.createBracket = async (req, res) => {
     // Fetch full details of each round from DB
 
     
+    
     const roundDetails = await Round.find({ _id: { $in: bracket.rounds } });
     const bracketDetails=
     res.json({
@@ -116,4 +117,28 @@ exports.createBracket = async (req, res) => {
     console.log("Bracket Created\n", bracket);
 };
 
+exports.expUpdateResult = async (req, res) => {
+    const { roundNo, matchNo, score1, score2, bracketId } = req.body;
+    console.log("data fetched")
+    if (!roundNo || !matchNo || !score1 || !score2 || !bracketId) {
+        console.log("Invalid input");
+        return res.status(400).json({ success: false, message: "Invalid input" });
+        
+    }
 
+    await updateResult(roundNo, matchNo, score1, score2, bracketId);
+    console.log("Result Updated");
+    res.json({ success: true, message: "Result updated successfully" });
+    console.log("Result Updated");
+}
+
+exports.expScheduleMatches = async (req, res) => {
+    const { roundNo, teams, bracketId } = req.body;
+
+    if (!roundNo || !teams || !bracketId) {
+        return res.status(400).json({ success: false, message: "Invalid input" });
+    }
+
+    await scheduleMatches(roundNo, teams, bracketId);
+    res.json({ success: true, message: "Matches scheduled successfully" });
+}

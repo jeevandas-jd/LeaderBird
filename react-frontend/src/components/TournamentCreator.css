@@ -1,82 +1,81 @@
 .tournament-container {
-    width: 50%;
-    margin: auto;
-    text-align: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .team-input {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-  }
-  
-  .team-input input {
-    padding: 8px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .team-input button {
-    margin-left: 10px;
-    padding: 8px 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .team-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .team-list li {
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f1f1f1;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
-  .team-list button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .create-btn {
-    padding: 10px 15px;
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 15px;
-  }
-  
-  .error-message {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  .bracket {
-    margin-top: 20px;
-    padding: 10px;
-    background: #eef;
-    border-radius: 10px;
-  }
-  
-  .round {
-    margin-top: 15px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #fff;
-  }
-  
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.team-input {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.team-input input {
+  padding: 8px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.team-input button {
+  margin-left: 10px;
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.team-list {
+  list-style: none;
+  padding: 0;
+}
+
+.team-list li {
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.team-list button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.create-btn {
+  padding: 10px 15px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.bracket {
+  margin-top: 20px;
+  padding: 10px;
+  background: #eef;
+  border-radius: 10px;
+}
+
+.round {
+  margin-top: 15px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+}

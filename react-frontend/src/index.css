@@ -11,3 +11,60 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Basic styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.bracket {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.round {
+  min-width: 250px;
+}
+
+.match {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.team {
+  flex: 1;
+}
+
+.vs {
+  padding: 0 10px;
+}
+
+.input-group {
+  gap: 5px;
+}
+
+.input-group input {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bracket {
+    flex-direction: column;
+  }
+  
+  .round {
+    width: 100%;
+  }
+}

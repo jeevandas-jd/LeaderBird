@@ -7,6 +7,9 @@ import Signup from './components/Auth/Sginup';
 import Signin from './components/Auth/Signin';
 import TournamentCreator from './components/TournamentCreator';
 import Component from './components/testComponets/example';
+import TournamentList from './components/TournamentList';
+import TournamentDetail from './components/TournamentDetail';
+import CreateTournament from './components/CreateTournament';
 import ExampleBracket from './components/bracket/bracketII';
 //import Bracket from './components/bracket/brackets-viwer';
 
@@ -18,8 +21,12 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/signin' element={<Signin/>}/>
-        <Route path='/create-game' element={<ExampleBracket/>}/>
+  x
         <Route path='/example' element={<Component/>}/>
+
+        <Route path="/create-game" element={<TournamentList />} />
+            <Route path="/tournaments/new" element={<CreateTournament />} />
+            <Route path="/tournaments/:id" element={<TournamentDetail />} />
 
       </Routes>
     </Router>
